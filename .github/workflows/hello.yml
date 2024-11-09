@@ -1,0 +1,10 @@
+name: Hello # 名前
+
+on: push # イベント　これはプッシュ時に発動
+
+jobs: # ジョブ内容
+  hello:
+    runs-on: ubunts-latest # ランナーにubuntuを指定
+    steps: # ステップの定義
+    -run: echo "Hello world" # シェルコマンドの実行
+    -uses: actions/checkout@v4

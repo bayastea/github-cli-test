@@ -1,10 +1,14 @@
 name: Hello # 名前
 
-on: push # イベント　これはプッシュ時に発動
+# イベント　これはプッシュ時に発動
+# 配列で複数指定することも可能
+on: push 
 
-jobs: # ジョブ内容
-  hello:
-    runs-on: ubunts-latest # ランナーにubuntuを指定
+# ジョブ内容
+jobs: 
+  hello: # ジョブのID。自由に命名可能
+    runs-on: ubunts-latest # 実行環境にubuntuを指定
+
     steps: # ステップの定義
-    -run: echo "Hello world" # シェルコマンドの実行
-    -uses: actions/checkout@v4
+      - run: echo "Hello world" # シェルコマンドの実行
+      - uses: actions/checkout@v4 # GithubActionsが用意している「アクション」を呼ぶ

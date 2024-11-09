@@ -7,7 +7,7 @@ on: push
 # ジョブ内容
 jobs: 
   hello: # ジョブのID。自由に命名可能
-    runs-on: ubunts-latest # 実行環境にubuntuを指定
+    runs-on: ubuntu-latest # 実行環境にubuntuを指定
 
     steps: # ステップの定義
       - run: echo "Hello world" # シェルコマンドの実行

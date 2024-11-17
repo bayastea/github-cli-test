@@ -8,11 +8,11 @@ on:
       - warn
       - error
 
-      greeting: # 入力パラメータ名
-        type: string
-        default: Hello
-        required: true
-        description: A cheerful word
+      # greeting: # 入力パラメータ名
+      #   type: string
+      #   default: Hello
+      #   required: true
+      #   description: A cheerful word
 jobs:
   run:
     runs-on: ubuntu-latest

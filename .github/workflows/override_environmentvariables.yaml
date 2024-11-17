@@ -9,4 +9,4 @@ jobs:
       - run: echo "${EXAMPLE}" # ワークフローレベルの環境変数を出力
       - env: 
         EXAMPLE: Defined by step level # ステップレベルの環境変数を定義
-          tun: echo "${EXAMPLE}"
+      run: echo "${EXAMPLE}"

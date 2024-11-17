@@ -1,6 +1,6 @@
 name: Manual
 on:
-  workflow_dispatch:
+  workflow_dispatch: #手動実行イベント
     inputs: # 入力パラメータが必要な場合はinputsキー内に書いていく
       greeting: # 入力パラメータ名
         type: string

@@ -21,4 +21,4 @@ jobs:
           if [ ${#COMMENT_BODY} -eq 200 ]; then
            COMMENT_BODY="${COMMENT_BODY}..."
           fi
-          curl -X POST -H "Content-Type: application/json" -d '{ "text": "Discussionsにコメントがつきました\n${{ COMMENT_BODY }}\n${{ github.event.comment.html_url }}" }' ${{ secrets.SLACK_WEBHOOK }}
+          curl -X POST -H "Content-Type: application/json" -d '{ "text": "Discussionsにコメントがつきました\n${COMMENT_BODY}\n${{ github.event.comment.html_url }}" }' ${{ secrets.SLACK_WEBHOOK }}

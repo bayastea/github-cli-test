@@ -11,10 +11,10 @@ jobs:
     if: github.event.discussion && !github.event.comment
     steps:
       - run: |
-          curl -X POST -d '{ "text": "Created discussion: ${{ github.event.discussion.html_url }}" }' https://hooks.slack.com/services/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
+          curl -X POST -d '{ "text": "Created discussion: ${{ github.event.discussion.html_url }}" }' https://hooks.slack.com/services/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
   discussion_commented:
     runs-on: ubuntu-latest
     if: github.event.discussion && github.event.comment
     steps:
       - run: |
-          curl -X POST -d '{ "text": "Created discussion comment: ${{ github.event.comment.html_url }}" }' https://hooks.slack.com/services/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
+          curl -X POST -d '{ "text": "Created discussion comment: ${{ github.event.comment.html_url }}" }' https://hooks.slack.com/services/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

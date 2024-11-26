@@ -17,4 +17,4 @@ jobs:
     if: github.event.discussion && github.event.comment
     steps:
       - run: |
-          curl -X POST -d '{ "text": "Discussionsにコメントがつきました\n${{ github.event.comment.body }}: ${{ github.event.comment.html_url }}" }' ${{ secrets.SLACK_WEBHOOK }}
+          curl -X POST -d '{ "text": "Discussionsにコメントがつきました\n${{ github.event.comment.body }}\n ${{ github.event.comment.html_url }}" }' ${{ secrets.SLACK_WEBHOOK }}

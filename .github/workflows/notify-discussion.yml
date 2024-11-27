@@ -28,6 +28,6 @@ jobs:
           webhook: ${{ secrets.SLACK_WEBHOOK }}
           webhook-type: incoming-webhook
           payload: |
-            text: ${{ prepare_payload.outputs.markdown_message_unescaped }}"
+            text: ${{ steps.prepare_payload.outputs.markdown_message_unescaped }}"
 
 

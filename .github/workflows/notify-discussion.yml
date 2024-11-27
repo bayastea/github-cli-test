@@ -16,9 +16,15 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.discussion && github.event.comment
     steps:
-      - name: Send GitHub Action data to a Slack workflow
+      - name: Post a message in a channel
         uses: slackapi/slack-github-action@v2.0.0
         with:
-          payload-delimiter: "_"
           webhook: ${{ secrets.SLACK_WEBHOOK }}
-          webhook-type: webhook-trigger
+          webhook-type: incoming-webhook
+          payload: |
+            text: "*GitHub Action build result*: ${{ job.status }}\n${{ github.event.comment.body }}"
+            blocks:
+              - type: "section"
+            text:
+              type: "mrkdwn"
+              text: "GitHub Action build result: ${{ job.status }}\n${{ github.event.comment.html_url }}"

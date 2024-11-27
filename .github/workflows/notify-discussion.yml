@@ -18,14 +18,13 @@ jobs:
     steps:
       - name: Prepare payload
         run: |
-          COMMENT_BODY=$(echo "${{ github.event.comment.body }}" | jq -Rsa . | cut -c 1-200)
+          COMMENT_BODY=$(echo "${{ github.event.comment.body }}" | cut -c 1-200)
           if [ ${#COMMENT_BODY} -eq 200 ]; then
-            COMMENT_BODY="${COMMENT_BODY}..."
+          COMMENT_BODY="${COMMENT_BODY}..."
           fi
-          echo "text: ${COMMENT_BODY}\n${{ github.event.comment.html_url }}" > payload.json
       - name: Post a message in a channel
         uses: slackapi/slack-github-action@v2.0.0
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK }}
           webhook-type: incoming-webhook
-          payload: ${{ steps.prepare_payload.outputs.payload }}
+          payload: ${{ COMMENT_BODY }}

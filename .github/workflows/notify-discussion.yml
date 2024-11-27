@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.discussion && github.event.comment
     steps:
-      - run: |
-          COMMENT_BODY=$(echo "${{ github.event.comment.body }}" | cut -c 1-200)
-          if [ ${#COMMENT_BODY} -eq 200 ]; then
-           COMMENT_BODY="${COMMENT_BODY}..."
-          fi
-          curl -X POST -H "Content-Type: application/json" -d '{ "text": "Discussionsにコメントがつきました\n'"${COMMENT_BODY}"'\n${{ github.event.comment.html_url }}" }' ${{ secrets.SLACK_WEBHOOK }}
+      - name: Send GitHub Action data to a Slack workflow
+        uses: slackapi/slack-github-action@v2.0.0
+        with:
+          payload-delimiter: "_"
+          webhook: ${{ secrets.SLACK_WEBHOOK }}
+          webhook-type: webhook-trigger

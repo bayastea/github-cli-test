@@ -22,9 +22,12 @@ jobs:
           if [ ${#COMMENT_BODY} -eq 200 ]; then
           COMMENT_BODY="${COMMENT_BODY}..."
           fi
+          echo "{\"text\": \"Discussionsにコメントがつきました\n${COMMENT_BODY}\n${{ github.event.comment.html_url }}\"}" > payload.json
+          echo "::set-output name=payload::$(cat payload.json)"
       - name: Post a message in a channel
         uses: slackapi/slack-github-action@v2.0.0
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK }}
           webhook-type: incoming-webhook
-          payload: ${{ COMMENT_BODY }}
+          payload: ${{ steps.prepare_payload.outputs.payload }}
+

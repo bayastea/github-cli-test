@@ -22,4 +22,4 @@ jobs:
           webhook: ${{ secrets.SLACK_WEBHOOK }}
           webhook-type: incoming-webhook
           payload: |
-            text: "*GitHub Action build result*: ${{ job.status }}\n${{ github.event.comment.body }}"
+            text: ${{ github.event.comment.body }}"\n\n${{ github.event.comment.html_url }}"

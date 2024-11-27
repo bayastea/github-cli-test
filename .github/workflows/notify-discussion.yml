@@ -17,19 +17,17 @@ jobs:
     if: github.event.discussion && github.event.comment
     steps:
       - name: Prepare payload
+        id: prepare_payload
         run: |
-          COMMENT_BODY=$(echo "${{ github.event.comment.body }}" | cut -c 1-200)
-          if [ ${#COMMENT_BODY} -eq 200 ]; then
-          COMMENT_BODY="${COMMENT_BODY}..."
-          fi
-          echo "{\"text\": \"Discussionsにコメントがつきました\n${COMMENT_BODY}\n${{ github.event.comment.html_url }}\"}" > payload.json
-          echo "::set-output name=payload::$(cat payload.json)"
+          title=${{ github.event.discussion.title }}
+          body=${{ github.event.comment.body }}
+          printf -v markdown_message_unescaped %b "*<${{ github.event.comment.html_url }}|Comment on $title>*\n$body"
       - name: Post a message in a channel
         uses: slackapi/slack-github-action@v2.0.0
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK }}
           webhook-type: incoming-webhook
           payload: |
-            text: ${{ github.event.comment.body }}"\n\n${{ github.event.comment.html_url }}"
+            text: ${{ prepare_payload.outputs.markdown_message_unescaped }}"
 
 

@@ -22,4 +22,4 @@ jobs:
           webhook: ${{ secrets.SLACK_WEBHOOK }}
           webhook-type: incoming-webhook
           payload: |
-            text: ${{ github.event.comment.body }}"\n\n${{ github.event.comment.html_url }}"
+            text: ${{ github.event.comment.body }}"\n${{ github.event.comment.html_url }}"

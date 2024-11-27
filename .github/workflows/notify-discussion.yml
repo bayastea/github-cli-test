@@ -23,8 +23,3 @@ jobs:
           webhook-type: incoming-webhook
           payload: |
             text: "*GitHub Action build result*: ${{ job.status }}\n${{ github.event.comment.body }}"
-            blocks:
-              - type: "section"
-            text:
-              type: "mrkdwn"
-              text: "GitHub Action build result: ${{ job.status }}\n${{ github.event.comment.html_url }}"

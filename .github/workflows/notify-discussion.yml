@@ -28,4 +28,4 @@ jobs:
         with:
           webhook: ${{ secrets.SLACK_WEBHOOK }}
           webhook-type: incoming-webhook
-          payload: $(cat paylpoad.json)
+          payload: $(cat payload.json)

@@ -19,8 +19,7 @@ jobs:
       - name: Prepare payload
         id: prepare_payload
         run: |
-          title=${{ github.event.discussion.title }}
-          printf -v markdown_message_unescaped %b "*<${{ github.event.comment.html_url }}|Comment on ${{ github.event.discussion.title }}>*\n ${{ github.event.comment.body}}"
+          printf -v markdown_message_unescaped %b "<${{ github.event.comment.html_url }}|Comment on ${{ github.event.discussion.title }}>\n ${{ github.event.comment.body}}"
       - name: Post a message in a channel
         uses: slackapi/slack-github-action@v2.0.0
         with:
